@@ -1,27 +1,24 @@
 
-import {setTripControls} from './view/stats.js';
-import {setTripFilters} from './view/filters.js';
+import {setTripControls} from './view/trip-controls.js';
+import {setTripFilters} from './view/trip-filters.js';
 import {setTripInfo} from './view/trip-info.js';
-import {setNewPointTrip} from './view/newPoint.js';
-import {setSortDay} from './view/sort-day.js';
-import {setEditPoint} from './view/edit-point.js';
-import {setPoint} from './view/point.js';
+import {setTripSort} from './view/trip-sort.js';
+import {setTripEventList} from './view/trip-event-list.js';
+import {setNewPointTrip} from './view/new-point-trip.js';
+import {setEditPoint} from './view/edit-point-trip.js';
 
-const tripControls = document.querySelector('.trip-controls');
-const tripFilters = document.querySelector('.trip-controls__filters');
-const tripInfo = document.querySelector('.trip-main');
-const sortDay = document.querySelector('.trip-events');
-const editPoint = document.querySelector('.event');
+const tripControlsElement = document.querySelector('.trip-controls');
+const tripControlFiltersElement = document.querySelector('.trip-controls__filters');
+const tripInfoElement = document.querySelector('.trip-main');
+const tripEventsElement = document.querySelector('.trip-events');
 
 function render  (container, template, place) {
   container.insertAdjacentHTML(place, template);
 };
 
-render(tripControls, setTripControls(), 'afterbegin');
-render(tripFilters, setTripFilters(), 'beforeend');
-render(tripInfo, setTripInfo(), 'afterbegin');
-render(sortDay, setSortDay(), 'afterbegin');
-// render(addNewPoint, setNewPointTrip(), 'afterbegin');
-render(sortDay, setEditPoint(), 'beforeend');
-render(editPoint, setNewPointTrip(), 'beforeend');
-render(sortDay, setPoint(),'beforeend');
+render(tripControlsElement, setTripControls(), 'afterbegin');
+render(tripControlFiltersElement, setTripFilters(), 'beforeend');
+render(tripInfoElement, setTripInfo(), 'afterbegin');
+render(tripEventsElement, setTripSort(), 'beforeend');
+render(tripEventsElement, setTripEventList(), 'beforeend');
+render(tripEventsElement, setNewPointTrip(), 'afterbegin');
