@@ -1,4 +1,4 @@
-function setPoint () {
+function renderPoint () {
   return `
   <ul class="trip-events__list">
   <li class="trip-events__item">
@@ -38,7 +38,7 @@ function setPoint () {
     </button>
   </div>
 </li>
-</ul>`
+</ul>`;
 }
 
-export {setPoint};
+export {renderPoint};

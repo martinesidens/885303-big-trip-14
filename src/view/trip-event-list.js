@@ -1,4 +1,4 @@
-function setTripEventList() {
+function renderTripEventList() {
   return `
   <ul class="trip-events__list">
   <li class="trip-events__item">
@@ -119,7 +119,7 @@ function setTripEventList() {
                 </button>
               </div>
             </li>
-  </ul>`
+  </ul>`;
 }
 
-export {setTripEventList};
+export {renderTripEventList};

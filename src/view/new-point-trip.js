@@ -1,4 +1,4 @@
-function setNewPointTrip () {
+function renderNewPointTrip () {
   return `<form class="event event--edit" action="#" method="post">
   <header class="event__header">
     <div class="event__type-wrapper">
@@ -163,7 +163,7 @@ function setNewPointTrip () {
       </div>
     </section>
   </section>
-</form>`
+</form>`;
 }
 
-export {setNewPointTrip};
+export {renderNewPointTrip};

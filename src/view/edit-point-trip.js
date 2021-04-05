@@ -1,4 +1,4 @@
-function setEditPoint () {
+function renderEditPoint () {
   return `
   <form class="event event--edit" action="#" method="post">
                 <header class="event__header">
@@ -158,7 +158,7 @@ function setEditPoint () {
                   </section>
                 </section>
               </form>
-  `
+  `;
 }
 
-export {setEditPoint};
+export {renderEditPoint};

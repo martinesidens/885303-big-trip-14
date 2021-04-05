@@ -1,4 +1,4 @@
-function setTripInfo () {
+function renderTripInfo () {
   return `<section class="trip-main__trip-info  trip-info">
   <div class="trip-info__main">
     <h1 class="trip-info__title">Amsterdam &mdash; Chamonix &mdash; Geneva</h1>
@@ -10,7 +10,7 @@ function setTripInfo () {
   Total: &euro;&nbsp;<span class="trip-info__cost-value">1230</span>
 </p>
 
-</section>`
+</section>`;
 }
 
-export {setTripInfo};
+export {renderTripInfo};
