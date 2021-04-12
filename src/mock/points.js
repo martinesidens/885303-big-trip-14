@@ -9,7 +9,7 @@ const srcPhotoList = [].fill(srcPhoto, 0, getRandomInt(1, 5));
 console.log(srcPhotoList);
 
 
-const offerList = {
+const offerList = [
   optionOne: {
     service: 'Сервис номер один',
     price: 10,
@@ -30,7 +30,7 @@ const offerList = {
     service: 'Сервис номер пять',
     price: 50,
   },
-}
+]
 
 function generatePoint () {
   return {
