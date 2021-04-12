@@ -1,7 +1,13 @@
+import {getRandomArray, getRandomInt} from './util.js';
 
 const pointType = ['Taxi', 'Bus', 'Train', 'Ship', 'Transport', 'Drive', 'Flight', 'Check-in', 'Sightseeng', 'Restaurant'];
 const destinationTrip = ['Genova', 'Milan', 'Torino', 'Como', 'Lugano'];
-const destinationInfo = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Cras aliquet varius magna, non porta ligula feugiat eget.', 'Fusce tristique felis at fermentum pharetra.', 'Aliquam id orci ut lectus varius viverra.', 'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.'];
+const destinationInfoText = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Cras aliquet varius magna, non porta ligula feugiat eget.', 'Fusce tristique felis at fermentum pharetra.', 'Aliquam id orci ut lectus varius viverra.', 'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.'];
+const srcPhoto = 'http://picsum.photos/248/152?r=';
+const srcPhotoList = [].fill(srcPhoto, 0, getRandomInt(1, 5));
+
+console.log(srcPhotoList);
+
 
 const offerList = {
   optionOne: {
@@ -28,14 +34,17 @@ const offerList = {
 
 function generatePoint () {
   return {
-    pointType: pointType[i],
-    destination: destinationTrip[i],
+    pointType: getRandomArray(pointType),
+    destination: getRandomArray(destinationTrip),
     dataStartTrip: '',
     dataEndTrip: '',
-    price: 100,
+    price: getRandomInt(100, 5000),
 
     offerList: {},
 
-    destinationInfo: '',
+    destinationInfo: {
+      text: getRandomArray(destinationInfoText),
+      photos: '',
+    },
   }
 }

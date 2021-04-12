@@ -1,4 +1,3 @@
-
 import {renderTripControls} from './view/trip-controls.js';
 import {renderTripFilters} from './view/trip-filters.js';
 import {renderTripInfo} from './view/trip-info.js';
