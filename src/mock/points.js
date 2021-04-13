@@ -51,7 +51,5 @@ function generatePoint () {
   };
 }
 
-console.log(generatePoint());
-
 export {generatePoint};
 

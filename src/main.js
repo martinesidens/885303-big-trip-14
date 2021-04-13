@@ -20,4 +20,8 @@ render(tripEventsElement, renderTripSort(), 'beforeend');
 render(tripEventsElement, renderTripEventList(), 'beforeend');
 render(tripEventsElement, renderNewPointTrip(), 'afterbegin');
 
-generatePoint();
+function getDataPointTrip () {
+  return new Array(20).fill().map(() => generatePoint());
+}
+
+getDataPointTrip();
