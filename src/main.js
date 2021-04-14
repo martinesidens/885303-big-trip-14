@@ -17,13 +17,11 @@ render(tripControlsElement, renderTripControls(), 'afterbegin');
 render(tripControlFiltersElement, renderTripFilters(), 'beforeend');
 render(tripInfoElement, renderTripInfo(), 'afterbegin');
 render(tripEventsElement, renderTripSort(), 'beforeend');
-render(tripEventsElement, renderTripEventList(), 'beforeend');
+render(tripEventsElement, renderTripEventList(getDataPointTrip()), 'beforeend');
 render(tripEventsElement, renderNewPointTrip(), 'afterbegin');
 
 function getDataPointTrip () {
   return new Array(20).fill().map(() => generatePoint());
 }
-
-console.log(getDataPointTrip());
 
 export {getDataPointTrip};

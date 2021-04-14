@@ -1,14 +1,13 @@
 import {getDataPointTrip} from '../main';
 
-function renderTripEventList(data) {
-  data.pointType = pointType;
-  data.destination = destination;
-
-  console.log(pointType);
+function renderTripEventList(tripPoints) {
+  const pointType = tripPoints.pointType;
+  const destination = tripPoints.destination;
+  console.log(tripPoints.pointType);
 
   return `
   <ul class="trip-events__list">
-  <li class="trip-events__item">
+   <li class="trip-events__item">
               <div class="event">
                 <time class="event__date" datetime="2019-03-18">MAR 18</time>
                 <div class="event__type">
