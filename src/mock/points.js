@@ -37,7 +37,7 @@ const offerList = [
 function generatePoint () {
   return {
     pointType: pointType[getRandomInt(0, 9)],
-    destination: getRandomArray(destinationTrip),
+    destination: destinationTrip[getRandomInt(0, 4)],
     dataStartTrip: dayjs().format('DD/MM/YYYY') ,
     dataEndTrip: dayjs().format('DD/MM/YYYY'),
     price: getRandomInt(100, 5000),

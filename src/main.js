@@ -24,4 +24,6 @@ function getDataPointTrip () {
   return new Array(20).fill().map(() => generatePoint());
 }
 
-getDataPointTrip();
+console.log(getDataPointTrip());
+
+export {getDataPointTrip};

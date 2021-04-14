@@ -1,4 +1,11 @@
-function renderTripEventList() {
+import {getDataPointTrip} from '../main';
+
+function renderTripEventList(data) {
+  data.pointType = pointType;
+  data.destination = destination;
+
+  console.log(pointType);
+
   return `
   <ul class="trip-events__list">
   <li class="trip-events__item">
@@ -7,7 +14,7 @@ function renderTripEventList() {
                 <div class="event__type">
                   <img class="event__type-icon" width="42" height="42" src="img/icons/taxi.png" alt="Event type icon">
                 </div>
-                <h3 class="event__title">Taxi Amsterdam</h3>
+                <h3 class="event__title">${pointType} ${destination}</h3>
                 <div class="event__schedule">
                   <p class="event__time">
                     <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
