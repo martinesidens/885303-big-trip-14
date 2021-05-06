@@ -8,8 +8,12 @@ function getRandomArray (data) {
   return Array.from(data.slice(0, getRandomInt (0, data.length)));
 }
 
+function getRandomElement (data) {
+  return data[getRandomInt(0, data.length)];
+}
+
 function render  (container, template, place) {
   container.insertAdjacentHTML(place, template);
 }
 
-export {getRandomInt, getRandomArray, render};
+export {getRandomInt, getRandomArray, render, getRandomElement};

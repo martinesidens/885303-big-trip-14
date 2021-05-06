@@ -1,6 +1,3 @@
-import {getDataPointTrip} from '../main';
-
-
 function renderNewPointTrip () {
 
 return `<form class="event event--edit" action="#" method="post">
@@ -170,7 +167,5 @@ return `<form class="event event--edit" action="#" method="post">
 </form>`;
 }
 
-
-getDataPointTrip();
 
 export {renderNewPointTrip};

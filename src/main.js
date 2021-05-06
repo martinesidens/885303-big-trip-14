@@ -19,15 +19,11 @@ render(tripControlFiltersElement, renderTripFilters(), 'beforeend');
 render(tripInfoElement, renderTripInfo(), 'afterbegin');
 render(tripEventsElement, renderTripSort(), 'beforeend');
 
-for (const variable of getDataPointTrip()) {
-  render(tripEventsElement, renderTripPoint(variable), 'beforeend');
+for (const element of getDataPointTrip()) {
+  render(tripEventsElement, renderTripPoint(element), 'beforeend');
 }
 
-for (const variable of getDataPointTrip()) {
-  render(tripEventsElement, renderTripPoint(variable), 'beforeend');
-}
-
-render(tripEventsElement, renderNewPointTrip(), 'afterbegin');
+render(tripEventsElement, renderNewPointTrip(element), 'afterbegin');
 
 function getDataPointTrip () {
   return new Array(20).fill('').map(() => generatePoint());

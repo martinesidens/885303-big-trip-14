@@ -1,9 +1,10 @@
-import {getRandomInt, getRandomArray} from './../util.js';
+import {getRandomInt, getRandomArray, getRandomElement} from './../util.js';
 import dayjs from 'dayjs';
 
 const pointType = ['Taxi', 'Bus', 'Train', 'Ship', 'Transport', 'Drive', 'Flight', 'Check-in', 'Sightseeng', 'Restaurant'];
 const destinationTrip = ['Genova', 'Milan', 'Torino', 'Como', 'Lugano'];
 const destinationInfoText = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Cras aliquet varius magna, non porta ligula feugiat eget.', 'Fusce tristique felis at fermentum pharetra.', 'Aliquam id orci ut lectus varius viverra.', 'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.'];
+const srcIcons = ['/img/icons/taxi.png', '/img/icons/drive.png', '/img/icons/flight.png', '/img/icons/bus.png','/img/icons/check-in.png','/img/icons/restaurant.png', '/img/icons/ship.png', '/img/icons/sightseeing.png', '/img/icons/taxi.png', '/img/icons/train.png', '/img/icons/transport.png'];
 const srcPhoto = 'http://picsum.photos/248/152?r=';
 const srcPhotoList = new Array(5).fill('').map(() => getPhotoList(srcPhoto));
 
@@ -37,10 +38,11 @@ const offerList = [
 
 function generatePoint () {
   return {
+    eventIcon: getRandomElement(srcIcons),
     pointType: pointType[getRandomInt(0, 9)],
     destination: destinationTrip[getRandomInt(0, 4)],
     dataStartTrip: dayjs().format('HH:mm') ,
-    dataEndTrip: dayjs().format('HH:mm'),
+    dataEndTrip: dayjs().add(1, 'hour').format('HH:mm'),
     price: getRandomInt(100, 5000),
 
     offerList: getRandomArray(offerList),
