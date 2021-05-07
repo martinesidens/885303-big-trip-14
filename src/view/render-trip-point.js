@@ -3,14 +3,9 @@ import {getRandomInt} from '../util.js';
 function renderTripPoint(tripPoints) {
 
   console.log(tripPoints);
-  const eventIconSrc = tripPoints.eventIcon;
-  const pointType = tripPoints.pointType;
-  const destination = tripPoints.destination;
-  const dataStartTrip = tripPoints.dataStartTrip;
-  const dataEndTrip = tripPoints.dataEndTrip;
-  const price = tripPoints.price;
-  const service = tripPoints.offerList[0] === undefined ? 'без допов' : tripPoints.offerList[getRandomInt(0, tripPoints.offerList.length)].service;
+  const {eventIcon, pointType, destination, dataStartTrip, dataEndTrip, price, dateEvent} = tripPoints;
 
+  const service = tripPoints.offerList[0] === undefined ? 'без допов' : tripPoints.offerList[getRandomInt(0, tripPoints.offerList.length)].service;
   const servicePrice =tripPoints.offerList[0] === undefined ? 'бесценно' : tripPoints.offerList[getRandomInt(0, tripPoints.offerList.length)].price;
   // const differentTime = dataStartTrip.diff(dataEndTrip);
 
@@ -20,9 +15,9 @@ function renderTripPoint(tripPoints) {
   <ul class="trip-events__list">
    <li class="trip-events__item">
               <div class="event">
-                <time class="event__date" datetime="2019-03-18">MAR 18</time>
+                <time class="event__date" datetime="2019-03-18">${dateEvent}</time>
                 <div class="event__type">
-                  <img class="event__type-icon" width="42" height="42" src="${eventIconSrc}" alt="Event type icon">
+                  <img class="event__type-icon" width="42" height="42" src="${eventIcon}" alt="Event type icon">
                 </div>
                 <h3 class="event__title">${pointType} ${destination}</h3>
                 <div class="event__schedule">

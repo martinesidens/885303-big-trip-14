@@ -38,11 +38,12 @@ const offerList = [
 
 function generatePoint () {
   return {
+    dateEvent: dayjs().format('DD MMM'),
     eventIcon: getRandomElement(srcIcons),
     pointType: pointType[getRandomInt(0, 9)],
     destination: destinationTrip[getRandomInt(0, 4)],
-    dataStartTrip: dayjs().format('HH:mm') ,
-    dataEndTrip: dayjs().add(1, 'hour').format('HH:mm'),
+    dataStartTrip: dayjs().format('DD/MM/YYYY HH:mm') ,
+    dataEndTrip: dayjs().add(1, 'hour').format('DD/MM/YYYY HH:mm'),
     price: getRandomInt(100, 5000),
 
     offerList: getRandomArray(offerList),
