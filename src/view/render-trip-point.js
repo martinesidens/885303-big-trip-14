@@ -1,15 +1,16 @@
-import {getRandomInt} from '../util.js';
-
 function renderTripPoint(tripPoints) {
 
-  console.log(tripPoints);
   const {eventIcon, pointType, destination, dataStartTrip, dataEndTrip, price, dateEvent} = tripPoints;
 
-  const service = tripPoints.offerList[0] === undefined ? 'без допов' : tripPoints.offerList[getRandomInt(0, tripPoints.offerList.length)].service;
-  const servicePrice =tripPoints.offerList[0] === undefined ? 'бесценно' : tripPoints.offerList[getRandomInt(0, tripPoints.offerList.length)].price;
-  // const differentTime = dataStartTrip.diff(dataEndTrip);
-
-  // console.log(differentTime);
+  function renderOffersPoint (data) {
+    return data.map((element) => {
+      return `<li class="event__offer">
+                    <span class="event__offer-title">${element.service}</span>
+                    &plus;&euro;&nbsp;
+                    <span class="event__offer-price">${element.price}</span>
+                  </li>`;
+    }).join('');
+  }
 
   return `
   <ul class="trip-events__list">
@@ -33,11 +34,7 @@ function renderTripPoint(tripPoints) {
                 </p>
                 <h4 class="visually-hidden">Offers:</h4>
                 <ul class="event__selected-offers">
-                  <li class="event__offer">
-                    <span class="event__offer-title">${service}</span>
-                    &plus;&euro;&nbsp;
-                    <span class="event__offer-price">${servicePrice}</span>
-                  </li>
+                  ${renderOffersPoint(tripPoints.offerList)}
                 </ul>
                 <button class="event__favorite-btn event__favorite-btn--active" type="button">
                   <span class="visually-hidden">Add to favorite</span>

@@ -1,14 +1,24 @@
-import {render} from '../util.js';
-
 function renderNewPointTrip (tripPoint) {
 
-  const {pointType, dataStartTrip, dataEndTrip, destinationInfo, price, destination} = tripPoint;
+  const {pointType, dataStartTrip, dataEndTrip, destinationInfo, price, destination, offerList} = tripPoint;
 
-  function getPhoto (data) {
-    data.forEach((element) => {
-      console.log(element);
-      return `<img className="event__photo" src="${element}" alt="Event photo">`;
-    });
+  function renderPhotos (data) {
+    return data.map((element) => {
+      return `<img class="event__photo" src="${element}" alt="Event photo">`;
+    }).join('');
+  }
+
+  function renderOffers (data) {
+    return data.map((element) => {
+      return `<div class="event__offer-selector">
+        <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox"
+               name="event-offer-luggage" checked>
+          <label class="event__offer-label" for="event-offer-luggage-1">
+            <span class="event__offer-title">${element.service}</span>
+            <span class="event__offer-price">${element.price}</span>
+          </label>
+      </div>`;
+    }).join('');
   }
 
   return `<form class="event event--edit" action="#" method="post">
@@ -113,51 +123,8 @@ function renderNewPointTrip (tripPoint) {
       <h3 class="event__section-title  event__section-title--offers">Offers</h3>
 
       <div class="event__available-offers">
-        <div class="event__offer-selector">
-          <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage" checked>
-          <label class="event__offer-label" for="event-offer-luggage-1">
-            <span class="event__offer-title">Add luggage</span>
-            &plus;&euro;&nbsp;
-            <span class="event__offer-price">30</span>
-          </label>
-        </div>
-
-        <div class="event__offer-selector">
-          <input class="event__offer-checkbox  visually-hidden" id="event-offer-comfort-1" type="checkbox" name="event-offer-comfort" checked>
-          <label class="event__offer-label" for="event-offer-comfort-1">
-            <span class="event__offer-title">Switch to comfort class</span>
-            &plus;&euro;&nbsp;
-            <span class="event__offer-price">100</span>
-          </label>
-        </div>
-
-        <div class="event__offer-selector">
-          <input class="event__offer-checkbox  visually-hidden" id="event-offer-meal-1" type="checkbox" name="event-offer-meal">
-          <label class="event__offer-label" for="event-offer-meal-1">
-            <span class="event__offer-title">Add meal</span>
-            &plus;&euro;&nbsp;
-            <span class="event__offer-price">15</span>
-          </label>
-        </div>
-
-        <div class="event__offer-selector">
-          <input class="event__offer-checkbox  visually-hidden" id="event-offer-seats-1" type="checkbox" name="event-offer-seats">
-          <label class="event__offer-label" for="event-offer-seats-1">
-            <span class="event__offer-title">Choose seats</span>
-            &plus;&euro;&nbsp;
-            <span class="event__offer-price">5</span>
-          </label>
-        </div>
-
-        <div class="event__offer-selector">
-          <input class="event__offer-checkbox  visually-hidden" id="event-offer-train-1" type="checkbox" name="event-offer-train">
-          <label class="event__offer-label" for="event-offer-train-1">
-            <span class="event__offer-title">Travel by train</span>
-            &plus;&euro;&nbsp;
-            <span class="event__offer-price">40</span>
-          </label>
-        </div>
-      </div>
+        ${renderOffers(offerList)}
+     </div>
     </section>
 
     <section class="event__section  event__section--destination">
@@ -166,11 +133,7 @@ function renderNewPointTrip (tripPoint) {
 
       <div class="event__photos-container">
         <div class="event__photos-tape">
-          ${getPhoto(destinationInfo.photos)}
-          <img class="event__photo" src="img/photos/2.jpg" alt="Event photo">
-          <img class="event__photo" src="img/photos/3.jpg" alt="Event photo">
-          <img class="event__photo" src="img/photos/4.jpg" alt="Event photo">
-          <img class="event__photo" src="img/photos/5.jpg" alt="Event photo">
+          ${renderPhotos(destinationInfo.photos)}
         </div>
       </div>
     </section>

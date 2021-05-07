@@ -42,8 +42,8 @@ function generatePoint () {
     eventIcon: getRandomElement(srcIcons),
     pointType: pointType[getRandomInt(0, 9)],
     destination: destinationTrip[getRandomInt(0, 4)],
-    dataStartTrip: dayjs().format('DD/MM/YYYY HH:mm') ,
-    dataEndTrip: dayjs().add(1, 'hour').format('DD/MM/YYYY HH:mm'),
+    dataStartTrip: dayjs().format('DD/MM/YY HH:mm') ,
+    dataEndTrip: dayjs().add(1, 'hour').format('DD/MM/YY HH:mm'),
     price: getRandomInt(100, 5000),
 
     offerList: getRandomArray(offerList),
