@@ -1,7 +1,7 @@
-import {createElement} from '../util.js';
+import {createElement } from '../util.js';
 
 
-console.log(createElement());
+console.log(createElement ());
 
 function generationTripPointTemplate(tripPoint) {
 
@@ -65,8 +65,10 @@ export default class TripPoint {
   }
 
   getElement() {
+    debugger;
+    console.log(this.getTemplate(), 'this.getTemplate()');
     if (!this._element) {
-      this._element = createElement(this.getTemplate());
+      this._element = createElement (this.getTemplate());
     }
     return this._element;
   }

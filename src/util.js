@@ -17,10 +17,12 @@ function render  (container, template, place) {
 }
 
 function createElement (template) {
+
+  console.log(template, 'template');
   const newElement = document.createElement('div');
   newElement.innerHTML = template;
   console.log(template, newElement.firstChild);
   return newElement.firstChild;
 }
 
-export {getRandomInt, getRandomArray, render, getRandomElement, createElement};
+export {getRandomInt, getRandomArray, render, getRandomElement, createElement };
