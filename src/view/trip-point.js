@@ -65,8 +65,6 @@ export default class TripPoint {
   }
 
   getElement() {
-    debugger;
-    console.log(this.getTemplate(), 'this.getTemplate()');
     if (!this._element) {
       this._element = createElement (this.getTemplate());
     }
