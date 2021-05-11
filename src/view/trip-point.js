@@ -1,6 +1,11 @@
-function renderTripPoint(tripPoints) {
+import {createElement} from '../util.js';
 
-  const {eventIcon, pointType, destination, dataStartTrip, dataEndTrip, price, dateEvent} = tripPoints;
+
+console.log(createElement());
+
+function generationTripPointTemplate(tripPoint) {
+
+  const {eventIcon, pointType, destination, dataStartTrip, dataEndTrip, price, dateEvent} = tripPoint;
 
   function renderOffersPoint (data) {
     return data.map((element) => {
@@ -34,7 +39,7 @@ function renderTripPoint(tripPoints) {
                 </p>
                 <h4 class="visually-hidden">Offers:</h4>
                 <ul class="event__selected-offers">
-                  ${renderOffersPoint(tripPoints.offerList)}
+                  ${renderOffersPoint(tripPoint.offerList)}
                 </ul>
                 <button class="event__favorite-btn event__favorite-btn--active" type="button">
                   <span class="visually-hidden">Add to favorite</span>
@@ -50,4 +55,23 @@ function renderTripPoint(tripPoints) {
   </ul>`;
 }
 
-export {renderTripPoint};
+export default class TripPoint {
+  constructor(element) {
+    this._element = element;
+  }
+
+  getTemplate() {
+    return generationTripPointTemplate(this._element);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

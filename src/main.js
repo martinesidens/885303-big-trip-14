@@ -4,9 +4,10 @@ import {renderTripControls} from './view/trip-controls.js';
 import {renderTripFilters} from './view/trip-filters.js';
 import {renderTripInfo} from './view/trip-info.js';
 import {renderTripSort} from './view/trip-sort.js';
-import {renderTripPoint} from './view/render-trip-point.js';
+import TripPointView from './view/trip-point.js';
 import {renderNewPointTrip} from './view/render-new-point-trip.js';
 // import {renderEditPoint} from './view/edit-point-trip.js';
+
 const points = getDataPointTrip();
 
 const tripControlsElement = document.querySelector('.trip-controls');
@@ -20,7 +21,8 @@ render(tripInfoElement, renderTripInfo(), 'afterbegin');
 render(tripEventsElement, renderTripSort(), 'beforeend');
 
 for (const element of points) {
-  render(tripEventsElement, renderTripPoint(element), 'beforeend');
+  console.log(element);
+  render(tripEventsElement, new TripPointView(element).getElement(), 'beforeend');
 }
 
 render(tripEventsElement, renderNewPointTrip(points[0]), 'afterbegin');
