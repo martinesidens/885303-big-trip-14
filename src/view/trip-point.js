@@ -1,8 +1,5 @@
 import {createElement } from '../util.js';
 
-
-console.log(createElement ());
-
 function generationTripPointTemplate(tripPoint) {
 
   const {eventIcon, pointType, destination, dataStartTrip, dataEndTrip, price, dateEvent} = tripPoint;

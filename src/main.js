@@ -1,4 +1,4 @@
-import {render, renderElement} from './util.js';
+import {render, renderElement, RenderPosition} from './util.js';
 import {generatePoint, MOCK_COUNT} from './mock/points.js';
 import {renderTripControls} from './view/trip-controls.js';
 import {renderTripFilters} from './view/trip-filters.js';
@@ -21,7 +21,7 @@ render(tripInfoElement, renderTripInfo(), 'afterbegin');
 render(tripEventsElement, renderTripSort(), 'beforeend');
 
 for (const element of points) {
-  renderElement(tripEventsElement, new TripPointView(element).getElement(), 'beforeend');
+  renderElement(tripEventsElement, new TripPointView(element).getElement(), RenderPosition.BEFOREEND);
 }
 
 render(tripEventsElement, renderNewPointTrip(points[0]), 'afterbegin');
