@@ -22,7 +22,6 @@ function render  (container, template, place) {
 }
 
 function renderElement (container, element, place) {
-  debugger;
   switch (place) {
     case RenderPosition.AFTERBEGIN:
       container.prepend(element);
