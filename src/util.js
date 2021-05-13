@@ -17,11 +17,7 @@ function getRandomElement (data) {
   return data[getRandomInt(0, data.length)];
 }
 
-function render  (container, template, place) {
-  container.insertAdjacentHTML(place, template);
-}
-
-function renderElement (container, element, place) {
+function render (container, element, place = RenderPosition.BEFOREEND) {
   switch (place) {
     case RenderPosition.AFTERBEGIN:
       container.prepend(element);
@@ -33,10 +29,9 @@ function renderElement (container, element, place) {
 }
 
 function createElement (template) {
-  console.log(template);
   const newElement = document.createElement('div');
   newElement.innerHTML = template;
-  return newElement.firstChild;
+  return newElement.firstElementChild;
 }
 
-export {getRandomInt, getRandomArray, render, getRandomElement, createElement, renderElement, RenderPosition };
+export {getRandomInt, getRandomArray, getRandomElement, createElement, render, RenderPosition };

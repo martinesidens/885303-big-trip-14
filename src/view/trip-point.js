@@ -14,8 +14,7 @@ function generationTripPointTemplate(tripPoint) {
     }).join('');
   }
 
-  return `
-  <ul class="trip-events__list">
+  return `<ul class="trip-events__list">
    <li class="trip-events__item">
               <div class="event">
                 <time class="event__date" datetime="2019-03-18">${dateEvent}</time>
@@ -53,12 +52,13 @@ function generationTripPointTemplate(tripPoint) {
 }
 
 export default class TripPoint {
-  constructor(element) {
-    this._element = element;
+  constructor(data) {
+    this._element = null;
+    this._data = data;
   }
 
   getTemplate() {
-    return generationTripPointTemplate(this._element);
+    return generationTripPointTemplate(this._data);
   }
 
   getElement() {
