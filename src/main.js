@@ -20,10 +20,31 @@ render(tripInfoElement, new TripInfoView().getElement(), RenderPosition.AFTERBEG
 render(tripEventsElement, new TripSortView().getElement());
 
 for (const point of points) {
-  render(tripEventsElement, new TripPointView(point).getElement());
+  renderTripPoint(tripEventsElement, point);
 }
 
-render(tripEventsElement, new FormPointTripView(points[0]).getElement(), RenderPosition.AFTERBEGIN);
+function renderTripPoint (container, points) {
+  const tripPoint = new TripPointView(points);
+  const formPointTrip = new FormPointTripView(points);
+
+  const replacePointToForm = () => {
+    container.replaceChild(formPointTrip.getElement(), tripPoint.getElement());
+    formPointTrip.getElement().addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      replaceFormToPoint();
+    });
+  };
+
+  const replaceFormToPoint = () => {
+    container.replaceChild(tripPoint.getElement(), formPointTrip.getElement());
+  };
+
+  tripPoint.getElement().addEventListener('click', () => {
+    replacePointToForm();
+  });
+
+  render(container, tripPoint.getElement(), RenderPosition.BEFOREEND);
+}
 
 function getDataPointTrip () {
   return new Array(MOCK_COUNT).fill('').map(() => generatePoint());
