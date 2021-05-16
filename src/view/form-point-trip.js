@@ -1,4 +1,6 @@
-function renderNewPointTrip (tripPoint) {
+import {createElement} from '../util';
+
+function generationFormPointTripTemplate (tripPoint) {
 
   const {pointType, dataStartTrip, dataEndTrip, destinationInfo, price, destination, offerList} = tripPoint;
 
@@ -141,5 +143,24 @@ function renderNewPointTrip (tripPoint) {
 </form>`;
 }
 
+export default class FormPointTrip {
+  constructor(data) {
+    this._element = null;
+    this._data = data;
+  }
 
-export {renderNewPointTrip};
+  getTemplate() {
+    return generationFormPointTripTemplate(this._data);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement (this.getTemplate());
+    }
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

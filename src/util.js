@@ -1,3 +1,8 @@
+const RenderPosition = {
+  AFTERBEGIN: 'afterbegin',
+  BEFOREEND: 'beforeend',
+};
+
 function getRandomInt (minNumber, maxNumber) {
   if(minNumber >= 0 && maxNumber >= 0 && (maxNumber >= minNumber)) {
     return parseInt(Math.random() * (maxNumber - minNumber) + minNumber);
@@ -12,8 +17,21 @@ function getRandomElement (data) {
   return data[getRandomInt(0, data.length)];
 }
 
-function render  (container, template, place) {
-  container.insertAdjacentHTML(place, template);
+function render (container, element, place = RenderPosition.BEFOREEND) {
+  switch (place) {
+    case RenderPosition.AFTERBEGIN:
+      container.prepend(element);
+      break;
+    case RenderPosition.BEFOREEND:
+      container.append(element);
+      break;
+  }
 }
 
-export {getRandomInt, getRandomArray, render, getRandomElement};
+function createElement (template) {
+  const newElement = document.createElement('div');
+  newElement.innerHTML = template;
+  return newElement.firstElementChild;
+}
+
+export {getRandomInt, getRandomArray, getRandomElement, createElement, render, RenderPosition };

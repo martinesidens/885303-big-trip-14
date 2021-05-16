@@ -1,4 +1,6 @@
-function renderTripFilters () {
+import {createElement} from '../util';
+
+function generationTripFiltersTemplate () {
   return `<div class="trip-controls__filters">
   <h2 class="visually-hidden">Filter events</h2>
   <form class="trip-filters" action="#" method="get">
@@ -22,4 +24,24 @@ function renderTripFilters () {
 </div>`;
 }
 
-export {renderTripFilters};
+export default class TripFilter {
+  constructor(data) {
+    this._element = null;
+    this._data = data;
+  }
+
+  getTemplate() {
+    return generationTripFiltersTemplate(this._data);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement (this.getTemplate());
+    }
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

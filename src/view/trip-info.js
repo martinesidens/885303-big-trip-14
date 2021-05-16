@@ -1,4 +1,6 @@
-function renderTripInfo () {
+import {createElement} from '../util';
+
+function generationTripInfoTemplate () {
   return `<section class="trip-main__trip-info  trip-info">
   <div class="trip-info__main">
     <h1 class="trip-info__title">Amsterdam &mdash; Chamonix &mdash; Geneva</h1>
@@ -13,4 +15,24 @@ function renderTripInfo () {
 </section>`;
 }
 
-export {renderTripInfo};
+export default class TripInfo {
+  constructor(data) {
+    this._element = null;
+    this._data = data;
+  }
+
+  getTemplate() {
+    return generationTripInfoTemplate(this._data);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement (this.getTemplate());
+    }
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
