@@ -52,7 +52,7 @@ function generationTripPointTemplate(tripPoint) {
 }
 
 export default class TripPoint extends AbstractView {
- getTemplate() {
+  getTemplate() {
     return generationTripPointTemplate(this._data);
   }
 }
