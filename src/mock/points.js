@@ -1,7 +1,7 @@
 import {getRandomInt, getRandomArray, getRandomElement} from './../util.js';
 import dayjs from 'dayjs';
 
-const MOCK_COUNT = 0;
+const MOCK_COUNT = 5;
 const POINT_TYPE = ['Taxi', 'Bus', 'Train', 'Ship', 'Transport', 'Drive', 'Flight', 'Check-in', 'Sightseeng', 'Restaurant'];
 const DESTINATION_TRIP = ['Genova', 'Milan', 'Torino', 'Como', 'Lugano'];
 const DESTINATION_INFO_TEXT = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Cras aliquet varius magna, non porta ligula feugiat eget.', 'Fusce tristique felis at fermentum pharetra.', 'Aliquam id orci ut lectus varius viverra.', 'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.'];

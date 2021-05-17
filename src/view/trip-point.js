@@ -1,4 +1,4 @@
-import {createElement } from '../util.js';
+import AbstractView from './abstract.js';
 
 function generationTripPointTemplate(tripPoint) {
 
@@ -51,24 +51,8 @@ function generationTripPointTemplate(tripPoint) {
   </ul>`;
 }
 
-export default class TripPoint {
-  constructor(data) {
-    this._element = null;
-    this._data = data;
-  }
-
-  getTemplate() {
+export default class TripPoint extends AbstractView {
+ getTemplate() {
     return generationTripPointTemplate(this._data);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement (this.getTemplate());
-    }
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

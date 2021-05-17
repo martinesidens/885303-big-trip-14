@@ -1,12 +1,13 @@
 import {createElement} from '../util.js';
 
 export default class Abstract {
-  constructor() {
+  constructor(data) {
     if (new.target === Abstract) {
       throw new Error('Can\'t instantiate Abstract, only concrete one.');
     }
 
     this._element = null;
+    this._data = data;
   }
 
   getTemplate() {
