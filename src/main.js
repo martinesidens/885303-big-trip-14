@@ -28,7 +28,6 @@ if (points.length === 0) {
   }
 }
 
-
 function renderTripPoint (container, points) {
   const tripPoint = new TripPointView(points);
   const formPointTrip = new FormPointTripView(points);
