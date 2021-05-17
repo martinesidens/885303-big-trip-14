@@ -15,15 +15,19 @@ const tripControlFiltersElement = document.querySelector('.trip-controls__filter
 const tripInfoElement = document.querySelector('.trip-main');
 const tripEventsElement = document.querySelector('.trip-events');
 
-render(tripEventsElement, new EmptyListView().getElement());
 render(tripControlsElement, new TripControlView().getElement(), RenderPosition.AFTERBEGIN);
 render(tripControlFiltersElement, new TripFilterView().getElement());
 render(tripInfoElement, new TripInfoView().getElement(), RenderPosition.AFTERBEGIN);
 render(tripEventsElement, new TripSortView().getElement());
 
-for (const point of points) {
-  renderTripPoint(tripEventsElement, point);
+if (points.length === 0) {
+  render(tripEventsElement, new EmptyListView().getElement());
+} else {
+  for (const point of points) {
+    renderTripPoint(tripEventsElement, point);
+  }
 }
+
 
 function renderTripPoint (container, points) {
   const tripPoint = new TripPointView(points);
