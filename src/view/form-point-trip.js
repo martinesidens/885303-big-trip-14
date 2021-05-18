@@ -147,18 +147,22 @@ function generationFormPointTripTemplate (tripPoint) {
 }
 
 export default class FormPointTrip extends AbstractView {
+  constructor(data) {
+    super(data);
+    this._submitHandler = this._submitHandler.bind(this);
+  }
+
   getTemplate() {
     return generationFormPointTripTemplate(this._data);
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement (this.getTemplate());
-    }
-    return this._element;
+  _submitHandler(evt) {
+    evt.preventDefault();
+    this._callback.submitHandler();
   }
 
-  removeElement() {
-    this._element = null;
+  setSubmitHandler (callback) {
+    this._callback.submitHandler = callback;
+    this.getElement().addEventListener('submit', this._submitHandler);
   }
 }
