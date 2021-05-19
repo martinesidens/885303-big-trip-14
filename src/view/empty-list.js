@@ -1,27 +1,11 @@
-import {createElement} from '../util.js';
+import AbstractView from './abstract.js';
 
 function generationEmptyList () {
   return '<p class="trip-events__msg">Click New Event to create your first point</p>';
 }
 
-export default class EmptyList {
-  constructor(data) {
-    this._element = null;
-    this._data = data;
-  }
-
+export default class EmptyList extends AbstractView {
   getTemplate() {
     return generationEmptyList(this._data);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement (this.getTemplate());
-    }
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

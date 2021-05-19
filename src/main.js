@@ -28,11 +28,9 @@ if (points.length === 0) {
   }
 }
 
-
 function renderTripPoint (container, points) {
   const tripPoint = new TripPointView(points);
   const formPointTrip = new FormPointTripView(points);
-  const closeButtonFormElement = document.querySelector('.event__rollup-btn');
 
   function onEscFormClose  (evt) {
     if (evt.key === 'Escape' || evt.key === 'Esc') {
@@ -44,13 +42,11 @@ function renderTripPoint (container, points) {
   function onCloseButton (evt) {
     evt.preventDefault();
     replaceFormToPoint();
-    closeButtonFormElement.removeEventListener('keydown', onCloseButton);
   }
 
   function replacePointToForm () {
     container.replaceChild(formPointTrip.getElement(), tripPoint.getElement());
-    formPointTrip.getElement().addEventListener('submit', (evt) => {
-      evt.preventDefault();
+    formPointTrip.setSubmitHandler(() => {
       replaceFormToPoint();
     });
     formPointTrip.getElement().querySelector('.event__rollup-btn').addEventListener('click', onCloseButton);
@@ -62,7 +58,7 @@ function renderTripPoint (container, points) {
     document.removeEventListener('keydown', onEscFormClose);
   }
 
-  tripPoint.getElement().addEventListener('click', () => {
+  tripPoint.setClickHandler(() => {
     replacePointToForm();
   });
 

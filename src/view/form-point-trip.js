@@ -1,4 +1,4 @@
-import {createElement} from '../util';
+import AbstractView from './abstract.js';
 
 function generationFormPointTripTemplate (tripPoint) {
 
@@ -146,24 +146,23 @@ function generationFormPointTripTemplate (tripPoint) {
 </form>`;
 }
 
-export default class FormPointTrip {
+export default class FormPointTrip extends AbstractView {
   constructor(data) {
-    this._element = null;
-    this._data = data;
+    super(data);
+    this._submitHandler = this._submitHandler.bind(this);
   }
 
   getTemplate() {
     return generationFormPointTripTemplate(this._data);
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement (this.getTemplate());
-    }
-    return this._element;
+  _submitHandler(evt) {
+    evt.preventDefault();
+    this._callback.submitHandler();
   }
 
-  removeElement() {
-    this._element = null;
+  setSubmitHandler (callback) {
+    this._callback.submitHandler = callback;
+    this.getElement().addEventListener('submit', this._submitHandler);
   }
 }

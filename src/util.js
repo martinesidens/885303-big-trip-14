@@ -1,3 +1,5 @@
+import Abstract from './view/abstract';
+
 const RenderPosition = {
   AFTERBEGIN: 'afterbegin',
   BEFOREEND: 'beforeend',
@@ -17,13 +19,21 @@ function getRandomElement (data) {
   return data[getRandomInt(0, data.length)];
 }
 
-function render (container, element, place = RenderPosition.BEFOREEND) {
+function render (container, child, place = RenderPosition.BEFOREEND) {
+  if (container instanceof Abstract) {
+    container = container.getElement();
+  }
+
+  if (child instanceof Abstract) {
+    child = child.getElement();
+  }
+
   switch (place) {
     case RenderPosition.AFTERBEGIN:
-      container.prepend(element);
+      container.prepend(child);
       break;
     case RenderPosition.BEFOREEND:
-      container.append(element);
+      container.append(child);
       break;
   }
 }

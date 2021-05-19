@@ -1,18 +1,18 @@
-import {createElement } from '../util.js';
+import AbstractView from './abstract.js';
+
+function renderOffersPoint (data) {
+  return data.map((element) => {
+    return `<li class="event__offer">
+                  <span class="event__offer-title">${element.service}</span>
+                  &plus;&euro;&nbsp;
+                  <span class="event__offer-price">${element.price}</span>
+                </li>`;
+  }).join('');
+}
 
 function generationTripPointTemplate(tripPoint) {
 
   const {eventIcon, pointType, destination, dataStartTrip, dataEndTrip, price, dateEvent} = tripPoint;
-
-  function renderOffersPoint (data) {
-    return data.map((element) => {
-      return `<li class="event__offer">
-                    <span class="event__offer-title">${element.service}</span>
-                    &plus;&euro;&nbsp;
-                    <span class="event__offer-price">${element.price}</span>
-                  </li>`;
-    }).join('');
-  }
 
   return `<ul class="trip-events__list">
    <li class="trip-events__item">
@@ -51,24 +51,25 @@ function generationTripPointTemplate(tripPoint) {
   </ul>`;
 }
 
-export default class TripPoint {
+export default class TripPoint extends AbstractView {
   constructor(data) {
-    this._element = null;
-    this._data = data;
+    super(data);
+    this._clickHandler = this._clickHandler.bind(this);
   }
 
   getTemplate() {
     return generationTripPointTemplate(this._data);
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement (this.getTemplate());
-    }
-    return this._element;
+  _clickHandler(evt) {
+    evt.preventDefault();
+    this._callback.clickHandler();
   }
 
-  removeElement() {
-    this._element = null;
+  setClickHandler (callback) {
+    this._callback.clickHandler = callback;
+    this.getElement().querySelector('.event__rollup-btn').addEventListener('click', this._clickHandler);
   }
+
+
 }
