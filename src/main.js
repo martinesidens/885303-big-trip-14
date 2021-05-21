@@ -4,9 +4,8 @@ import TripControlView from './view/trip-controls.js';
 import TripFilterView from './view/trip-filters.js';
 import TripInfoView from './view/trip-info.js';
 import TripSortView from './view/trip-sort.js';
-import TripPointView from './view/trip-point.js';
-import FormPointTripView from './view/form-point-trip.js';
 import EmptyListView from './view/empty-list.js';
+import PointPresenter from './presenter/point.js';
 
 const points = getDataPointTrip();
 
@@ -24,46 +23,48 @@ if (points.length === 0) {
   render(tripEventsElement, new EmptyListView().getElement());
 } else {
   for (const point of points) {
-    renderTripPoint(tripEventsElement, point);
+    const pointPresenter = new PointPresenter(tripEventsElement, point);
+    pointPresenter.init();
   }
 }
 
-function renderTripPoint (container, points) {
-  const tripPoint = new TripPointView(points);
-  const formPointTrip = new FormPointTripView(points);
-
-  function onEscFormClose  (evt) {
-    if (evt.key === 'Escape' || evt.key === 'Esc') {
-      evt.preventDefault();
-      replaceFormToPoint();
-      document.removeEventListener('keydown', onEscFormClose);
-    }
-  }
-  function onCloseButton (evt) {
-    evt.preventDefault();
-    replaceFormToPoint();
-  }
-
-  function replacePointToForm () {
-    container.replaceChild(formPointTrip.getElement(), tripPoint.getElement());
-    formPointTrip.setSubmitHandler(() => {
-      replaceFormToPoint();
-    });
-    formPointTrip.getElement().querySelector('.event__rollup-btn').addEventListener('click', onCloseButton);
-    document.addEventListener('keydown', onEscFormClose);
-  }
-
-  function replaceFormToPoint () {
-    container.replaceChild(tripPoint.getElement(), formPointTrip.getElement());
-    document.removeEventListener('keydown', onEscFormClose);
-  }
-
-  tripPoint.setClickHandler(() => {
-    replacePointToForm();
-  });
-
-  render(container, tripPoint.getElement(), RenderPosition.BEFOREEND);
-}
+// function renderTripPoint (container, point) {
+//   const tripPoint = new TripPointView(points);
+//   const formPointTrip = new FormPointTripView(points);
+//
+//   function onEscFormClose  (evt) {
+//     if (evt.key === 'Escape' || evt.key === 'Esc') {
+//       evt.preventDefault();
+//       replaceFormToPoint();
+//       document.removeEventListener('keydown', onEscFormClose);
+//     }
+//   }
+//
+//   function onCloseButton (evt) {
+//     evt.preventDefault();
+//     replaceFormToPoint();
+//   }
+//
+//   function replacePointToForm () {
+//     container.replaceChild(formPointTrip.getElement(), tripPoint.getElement());
+//     formPointTrip.setSubmitHandler(() => {
+//       replaceFormToPoint();
+//     });
+//     formPointTrip.getElement().querySelector('.event__rollup-btn').addEventListener('click', onCloseButton);
+//     document.addEventListener('keydown', onEscFormClose);
+//   }
+//
+//   function replaceFormToPoint () {
+//     container.replaceChild(tripPoint.getElement(), formPointTrip.getElement());
+//     document.removeEventListener('keydown', onEscFormClose);
+//   }
+//
+//   tripPoint.setClickHandler(() => {
+//     replacePointToForm();
+//   });
+//
+//   render(container, tripPoint.getElement(), RenderPosition.BEFOREEND);
+// }
 
 function getDataPointTrip () {
   return new Array(MOCK_COUNT).fill('').map(() => generatePoint());
