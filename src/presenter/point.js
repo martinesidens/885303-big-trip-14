@@ -9,6 +9,9 @@ export default class Point {
 
     this._tripPoint = null;
     this._formPointTrip = null;
+
+    this._onCloseButton = this._onCloseButton.bind(this);
+    this._onEscFormClose = this._onEscFormClose.bind(this);
   }
 
   init () {

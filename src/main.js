@@ -6,6 +6,7 @@ import TripInfoView from './view/trip-info.js';
 import TripSortView from './view/trip-sort.js';
 import EmptyListView from './view/empty-list.js';
 import PointPresenter from './presenter/point.js';
+import RoutePresenter from './presenter/route.js';
 
 const points = getDataPointTrip();
 
@@ -19,51 +20,17 @@ render(tripControlFiltersElement, new TripFilterView().getElement());
 render(tripInfoElement, new TripInfoView().getElement(), RenderPosition.AFTERBEGIN);
 render(tripEventsElement, new TripSortView().getElement());
 
-if (points.length === 0) {
-  render(tripEventsElement, new EmptyListView().getElement());
-} else {
-  for (const point of points) {
-    const pointPresenter = new PointPresenter(tripEventsElement, point);
-    pointPresenter.init();
-  }
-}
+const routePresenter = new RoutePresenter();
 
-// function renderTripPoint (container, point) {
-//   const tripPoint = new TripPointView(points);
-//   const formPointTrip = new FormPointTripView(points);
-//
-//   function onEscFormClose  (evt) {
-//     if (evt.key === 'Escape' || evt.key === 'Esc') {
-//       evt.preventDefault();
-//       replaceFormToPoint();
-//       document.removeEventListener('keydown', onEscFormClose);
-//     }
+routePresenter.init(tripEventsElement, points);
+
+// if (points.length === 0) {
+//   render(tripEventsElement, new EmptyListView().getElement());
+// } else {
+//   for (const point of points) {
+//     const pointPresenter = new PointPresenter(tripEventsElement, point);
+//     pointPresenter.init();
 //   }
-//
-//   function onCloseButton (evt) {
-//     evt.preventDefault();
-//     replaceFormToPoint();
-//   }
-//
-//   function replacePointToForm () {
-//     container.replaceChild(formPointTrip.getElement(), tripPoint.getElement());
-//     formPointTrip.setSubmitHandler(() => {
-//       replaceFormToPoint();
-//     });
-//     formPointTrip.getElement().querySelector('.event__rollup-btn').addEventListener('click', onCloseButton);
-//     document.addEventListener('keydown', onEscFormClose);
-//   }
-//
-//   function replaceFormToPoint () {
-//     container.replaceChild(tripPoint.getElement(), formPointTrip.getElement());
-//     document.removeEventListener('keydown', onEscFormClose);
-//   }
-//
-//   tripPoint.setClickHandler(() => {
-//     replacePointToForm();
-//   });
-//
-//   render(container, tripPoint.getElement(), RenderPosition.BEFOREEND);
 // }
 
 function getDataPointTrip () {
