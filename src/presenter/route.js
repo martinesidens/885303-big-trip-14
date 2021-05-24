@@ -9,23 +9,21 @@ export default class Route {
     this._container = container;
     this._points = points;
 
-    this._pointPresenter = null;
-
+    this._pointPresenter = new PointPresenter();
+    this._emptyList = new EmptyListView();
   }
 
-  init (points, container) {
 
-    console.log(points);
 
-    if (points.length === 0) {
-      render(this._container, new EmptyListView.getElement());
+  init () {
+
+    if (this._points.length === 0) {
+      render(this._container, this._emptyList.getElement());
     } else {
-      for (const point of points) {
-        this._pointPresenter = new PointPresenter(container, point);
+      for (const point of this._points) {
+        const pointPresenter = new PointPresenter(this._container, point);
       }
     }
   }
-
-
 }
 

@@ -20,9 +20,9 @@ render(tripControlFiltersElement, new TripFilterView().getElement());
 render(tripInfoElement, new TripInfoView().getElement(), RenderPosition.AFTERBEGIN);
 render(tripEventsElement, new TripSortView().getElement());
 
-const routePresenter = new RoutePresenter();
+const routePresenter = new RoutePresenter(tripEventsElement, points);
 
-routePresenter.init(tripEventsElement, points);
+routePresenter.init();
 
 // if (points.length === 0) {
 //   render(tripEventsElement, new EmptyListView().getElement());
